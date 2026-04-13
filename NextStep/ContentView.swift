@@ -6,61 +6,37 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @State private var history: [AnalysisEntry] = []
+    @State private var saved: [AnalysisEntry] = []
 
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
+        TabView {
+            HomeView(history: $history, saved: $saved)
+                .tabItem {
+                    Label(AppStrings.home, systemImage: AppIcons.home)
                 }
-                .onDelete(perform: deleteItems)
-            }
-#if os(macOS)
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-#endif
-            .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-#endif
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
-        }
-    }
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
+            HistoryView(history: $history)
+                .tabItem {
+                    Label(AppStrings.history, systemImage: AppIcons.history)
+                }
 
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
+            SavedView(saved: $saved)
+                .tabItem {
+                    Label(AppStrings.saved, systemImage: AppIcons.saved)
+                }
+
+            ProfileView(historyCount: history.count, savedCount: saved.count)
+                .tabItem {
+                    Label(AppStrings.profile, systemImage: AppIcons.profile)
+                }
         }
+        .tint(Color.appPrimary)
     }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
 }
