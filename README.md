@@ -1,28 +1,25 @@
 # NextStep
+
 A SwiftUI app that helps students simplify assignment instructions, deadlines, and next steps.
 
-# NextStep
+## Overview
 
-**NextStep** is a student support app built with **SwiftUI** in Xcode.  
-The idea of the app is to help users paste difficult academic text, assignment instructions, emails, or course-related messages, and get a  breakdown of what the text means.
+NextStep is a student support app built with SwiftUI in Xcode.  
+The purpose of the app is to help users paste difficult academic text, such as assignment instructions, emails, or course-related messages, and get a simpler breakdown of what the text means.
 
-This project was built as a **50/50 collaboration** between me and my Jvkhdz. We both contributed to the idea, structure, and development of the app.
-
----
+This project was built as a **50/50 collaboration** between **Medtroo** and **jvkhdz**. We both contributed to the idea, structure, and development of the app.
 
 ## What the app does
 
 NextStep helps users understand difficult written instructions by breaking text into simple sections such as:
 
-- **Original Text**
-- **Simple Explanation**
-- **Key Points**
-- **Deadline**
-- **Next Steps**
+- Original Text
+- Simple Explanation
+- Key Points
+- Deadline
+- Next Steps
 
 The goal is to make school instructions easier to understand, especially for students who may struggle with academic wording, long emails, or assignment descriptions.
-
----
 
 ## Main Features
 
@@ -33,8 +30,6 @@ The goal is to make school instructions easier to understand, especially for stu
 - View a basic **Profile** page with app statistics
 - Clean tab-based navigation
 - Custom color theme using reusable constants
-
----
 
 ## Example Input
 
